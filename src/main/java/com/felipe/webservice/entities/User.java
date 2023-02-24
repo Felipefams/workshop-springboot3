@@ -3,9 +3,12 @@ package com.felipe.webservice.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +24,10 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @Getter
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User(){}
 
