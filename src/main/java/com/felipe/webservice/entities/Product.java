@@ -3,31 +3,34 @@ package com.felipe.webservice.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 @Data
-@Table(name = "tb_category")
+@Entity
+@Table(name = "tb_product")
 @NoArgsConstructor
-public class Category implements Serializable {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+    private String description;
+    private Double price;
+    private String imgUrl;
 
-//    @OneToMany
-    @Getter
     @Transient
-    private Set<Product> products = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
-    public Category(Long id, String name){
+    public Product(Long id, String name, String description, Double price, String imgUrl){
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
-
 }
